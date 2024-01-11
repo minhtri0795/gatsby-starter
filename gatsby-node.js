@@ -22,7 +22,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   createRedirect({
     fromPath: originalURLPattern,
     toPath: targetURL,
-    isPermanent: true,
     force: true,
   })
   // Get all markdown blog posts sorted by date
