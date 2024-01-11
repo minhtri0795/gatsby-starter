@@ -14,8 +14,17 @@ const blogPost = path.resolve(`./src/templates/blog-post.js`)
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
-
+  const { createPage, createRedirect } = actions
+  const originalURLPattern =
+    "/home/?preview_id=56&preview_nonce=bb8a66d503&preview=true&previewPathname=%2Fhome%2F&p=56&page_id=56&typeName=Page&_thumbnail_id=4318"
+  const targetURL =
+    "/preview/?preview_id=56&preview_nonce=bb8a66d503&preview=true&previewPathname=%2Fhome%2F&p=56&page_id=56&typeName=Page&_thumbnail_id=4318"
+  createRedirect({
+    fromPath: originalURLPattern,
+    toPath: targetURL,
+    isPermanent: true,
+    force: true,
+  })
   // Get all markdown blog posts sorted by date
   const result = await graphql(`
     {
